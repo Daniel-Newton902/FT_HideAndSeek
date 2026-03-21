@@ -9,10 +9,15 @@
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Materials/Material.h"
+#include "StalkerAIController.h"
 #include "Engine/World.h"
 
 AFT_HideAndSeekCharacter::AFT_HideAndSeekCharacter()
 {
+	// set a controlling class for this character, in this case an AI controller, but it could be a player controller as well
+	AIControllerClass = AStalkerAIController::StaticClass();
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+
 	// Set size for player capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
 
@@ -62,6 +67,5 @@ void AFT_HideAndSeekCharacter::BeginPlay()
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Skynet Deployed, kill John Conner"));
-		GetCharacterMovement()->MaxWalkSpeed = 50.f;
 	}
 }

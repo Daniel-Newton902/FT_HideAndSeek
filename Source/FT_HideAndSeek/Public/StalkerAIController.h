@@ -14,7 +14,11 @@ class FT_HIDEANDSEEK_API AStalkerAIController : public AAIController
 {
 	GENERATED_BODY()
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
+	bool bIsStalkingPlayer = true;
 	virtual void Tick(float DeltaTime) override;
 	virtual void BeginPlay() override;
-
+private:
+	FVector Target;
+	AActor* Player; // reference to the player character, so the AI can stalk it
 };
