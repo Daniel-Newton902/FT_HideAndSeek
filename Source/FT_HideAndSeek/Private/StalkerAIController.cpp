@@ -15,6 +15,8 @@ void AStalkerAIController::Tick(float DeltaTime)
 	}
 	if (!bIsStalkingPlayer)
 	{
+		//Would set to normal
+		Body->SetMaterial(0, baseMaterial);
 		// if the AI has about 100 cm the AI can move to a new location, via a Jet2 Holiday
 		if (FVector::Dist(GetPawn()->GetActorLocation(), Target) < 200.0f) // i have put 200 as apaerntly my walls are to thick
 		{
@@ -27,7 +29,13 @@ void AStalkerAIController::Tick(float DeltaTime)
 	{
 		if(Player)
 		{
-			MoveToActor(Player);
+			if (FVector::Dist(GetPawn()->GetActorLocation(), Target) < 30.0f) {
+				//Would turn red
+				MoveToActor(Player);
+			}
+			else {
+				bIsStalkingPlayer=false;
+			}
 		}
 	}
 	

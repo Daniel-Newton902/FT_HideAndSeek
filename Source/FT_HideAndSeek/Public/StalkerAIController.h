@@ -15,7 +15,14 @@ class FT_HIDEANDSEEK_API AStalkerAIController : public AAIController
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
-	bool bIsStalkingPlayer = false;
+	bool bIsStalkingPlayer = true;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Components|Character", meta = (AllowPrivateAccess = "true"))
+	UStaticMeshComponent* Body;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials", meta = (AllowPrivateAccess = "true"))
+	UMaterial* baseMaterial;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Materials", meta = (AllowPrivateAccess = "true"))
+	UMaterial* hitMaterial;
+
 	virtual void Tick(float DeltaTime) override;
 	virtual void BeginPlay() override;
 private:
